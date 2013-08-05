@@ -1,6 +1,6 @@
 {% if bucketContent %}
   <p>What's here now:</p>
-  <pre>{{ bucketContent }}</pre>
+  <pre>{{ bucketContent|e }}</pre>
 {% else %}
   <p>NOTHING IS HERE NOW</p>
 {% endif %}
