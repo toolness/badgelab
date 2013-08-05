@@ -1,0 +1,100 @@
+var fs = require('fs');
+var express = require('express');
+var nunjucks = require('nunjucks');
+var mime = require('mime');
+
+var bucket = require('./simple-bucket');
+
+var PORT = process.env.PORT || 3000;
+
+var app = express();
+var templateLoader = new nunjucks.FileSystemLoader(__dirname + '/templates');
+var env = new nunjucks.Environment(templateLoader);
+
+function bucketify(options) {
+  var extension = new RegExp("\\" + options.ext + "$");
+  var mimeType = mime.lookup(options.ext);
+
+  return function(req, res, next) {
+    if (!extension.test(req.url)) return next();
+    if (req.method == "GET") {
+      return bucket.get(req.url, function(err, content) {
+        if (err) return next(err);
+        req.bucketContent = content;
+        if (explicitlyAcceptsHtml(req) && options.template)
+          return res.status(content ? 200 : 404).render(options.template, {
+            url: req.url,
+            bucketContent: req.bucketContent
+          });
+        if (!content)
+          return res.send(404);
+        res.type(mimeType).send(content);
+      });
+    } else if (req.method == "POST") {
+      return options.post(req, res, function(err) {
+        if (err) return next(err);
+        bucket.set(req.url, req.bucketContent, function(err) {
+          if (err) return next(err);
+          return res.redirect(303, req.url);
+        });
+      });
+    } else {
+      // TODO: Add Allow header
+      return res.send(405);
+    }
+  };
+}
+
+function explicitlyAcceptsHtml(req) {
+  for (var i = 0; i < req.accepted.length; i++) {
+    if (req.accepted[i].value == 'text/html')
+      return true;
+  }
+  return false;
+}
+
+env.express(app);
+
+app.use(express.static(__dirname + '/static'));
+app.use(express.bodyParser());
+
+app.use(bucketify({
+  ext: '.json',
+  template: 'json.html',
+  post: function(req, res, next) {
+    if (!(req.param('json') || '')) {
+      req.bucketContent = null;
+      return next();
+    }
+    try {
+      var content = JSON.parse(req.param('json'));
+    } catch (e) {
+      return res.type("text").send(400, "Invalid JSON: " + e);
+    }
+    req.bucketContent = JSON.stringify(content, null, 2);
+    next();
+  }
+}));
+
+app.use(bucketify({
+  ext: '.png',
+  template: 'png.html',
+  post: function(req, res, next) {
+    if (!(req.files.png && req.files.png.size)) {
+      req.bucketContent = null;
+      return next();
+    }
+    fs.readFile(req.files.png.path, function(err, content) {
+      if (err) return next(err);
+      fs.unlink(req.files.png.path, function(err) {
+        if (err) return next(err);
+        req.bucketContent = content;
+        next();        
+      });
+    });
+  }
+}));
+
+app.listen(PORT, function() {
+  console.log("listening on port", PORT);
+});

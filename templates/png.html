@@ -1,0 +1,11 @@
+{% if bucketContent %}
+  <img src="data:image/png;base64,{{ bucketContent.toString('base64') }}">
+{% else %}
+  <p>NOTHING HERE NOW</p>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="png">
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
+</form>

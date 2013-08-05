@@ -1,0 +1,11 @@
+{% if bucketContent %}
+  <p>What's here now:</p>
+  <pre>{{ bucketContent }}</pre>
+{% else %}
+  <p>NOTHING IS HERE NOW</p>
+{% endif %}
+
+<form method="POST">
+  <textarea name="json">{{ bucketContent }}</textarea>
+  <input type="submit" value="Submit">
+</form>
