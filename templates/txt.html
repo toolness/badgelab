@@ -1,0 +1,14 @@
+{% if bucketContent %}
+  <p>What's here now:</p>
+  <pre>{{ bucketContent|e }}</pre>
+{% else %}
+  <p>404 - NOTHING IS HERE NOW.</p>
+{% endif %}
+
+<p>Use the form below to change what's here now.</p>
+
+<form method="POST">
+  <textarea name="txt" cols="80" rows="25" maxlength="{{ maxContentSize }}">{{ bucketContent }}</textarea>
+  <p>
+  <input type="submit" value="Submit">
+</form>

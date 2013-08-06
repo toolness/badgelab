@@ -62,15 +62,27 @@ app.use(express.static(__dirname + '/static'));
 app.use(express.bodyParser());
 
 app.use(bucketify({
+  ext: '.txt',
+  template: 'txt.html',
+  post: function(req, res, next) {
+    var txt = (req.param('txt') || '').trim();
+
+    req.bucketContent = txt || null;
+    next();
+  }
+}));
+
+app.use(bucketify({
   ext: '.json',
   template: 'json.html',
   post: function(req, res, next) {
-    if (!(req.param('json') || '')) {
+    var json = (req.param('json') || '').trim();
+    if (!json) {
       req.bucketContent = null;
       return next();
     }
     try {
-      var content = JSON.parse(req.param('json'));
+      var content = JSON.parse(json);
     } catch (e) {
       return res.type("text").send(400, "Invalid JSON: " + e);
     }
