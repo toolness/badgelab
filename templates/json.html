@@ -15,8 +15,10 @@
   <input type="submit" value="Submit">
 </form>
 
-<script src="/run_prettify.js"></script>
+<script src="/prettify.js"></script>
 <script>
+onload = prettyPrint;
+
 document.querySelector("form textarea").onchange = function() {
   var value = this.value.trim();
 
