@@ -6,6 +6,7 @@ var mime = require('mime');
 var bucket = require('./simple-bucket');
 
 var PORT = process.env.PORT || 3000;
+var ORIGIN = process.env.ORIGIN || 'http://localhost:' + PORT;
 var MAX_CONTENT_SIZE = 256 * 1024;
 
 var app = express();
@@ -109,6 +110,15 @@ app.use(bucketify({
     });
   }
 }));
+
+app.get('/tutorial/:name', function(req, res, next) {
+  res.render('tutorial.html', {
+    origin: ORIGIN,
+    name: req.param('name'),
+    baseUrl: ORIGIN + '/' + req.param('name') + '/',
+    now: (new Date()).toISOString()
+  });
+});
 
 app.listen(PORT, function() {
   console.log("listening on port", PORT);
