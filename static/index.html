@@ -1,4 +1,55 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <title>Badge Lab</title>
+
 <p>This is badge lab.</p>
+
+<h2>Step ONE: Create issuer metadata</h2>
+
+<pre class="prettyprint lang-js">{ 
+  "name": "An Example Badge Issuer",
+  "url": "https://example.org"
+}</pre>
+
+<h2>Step TWO: Find a PNG for your badge</h2>
+
+<p>If you don't have time to create or find a good PNG, just use <a href="/spacecat.png">spacecat</a>.</p>
+
+<h2>Step THREE: Define a criteria for your badge</h2>
+
+<pre>Badge indicates person is cool.</pre>
+
+<h2>Step FOUR: Create badge class metadata</h2>
+
+<pre class="prettyprint lang-js">{
+  "name": "Awesome Robotics Badge",
+  "description": "For doing awesome things with robots that people think is pretty great.",
+  "image": "/spacecat.png",
+  "criteria": "https://example.org/robotics-badge.html",
+  "issuer": "https://example.org/organization.json"
+}</pre>
+
+<h2>Step FIVE: Create badge instance metadata</h2>
+
+<pre class="prettyprint lang-js">{ 
+  "uid": "f2c20",
+  "recipient": {
+    "type": "email",
+    "hashed": false,
+    "identity": "foo@bar.org"
+  },
+  "issuedOn": 1359217910,
+  "badge": "https://example.org/robotics-badge.json",
+  "verify": {
+    "type": "hosted",
+    "url": "https://example.org/beths-robotics-badge.json"
+  }
+}</pre>
+
+<h2>Step SIX: Bake the badge and issue it</h2>
+
+<h3>Advanced: Hash the recipient's email address</h3>
+<h3>Advanced: Create a signed assertion</h3>
+<h3>Advanced: Use the issuer API</h3>
+
+<script src="/run_prettify.js"></script>
