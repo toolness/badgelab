@@ -2,10 +2,29 @@
   <p>What's here now:</p>
   <pre>{{ bucketContent|e }}</pre>
 {% else %}
-  <p>NOTHING IS HERE NOW</p>
+  <p>404 - NOTHING IS HERE NOW.</p>
 {% endif %}
 
+<p>Use the form below to change what's here now.</p>
+
 <form method="POST">
-  <textarea name="json">{{ bucketContent }}</textarea>
+  <textarea name="json" cols="80" rows="25" maxlength="{{ maxContentSize }}">{{ bucketContent }}</textarea>
+  <p>
   <input type="submit" value="Submit">
 </form>
+
+<script>
+document.querySelector("form textarea").onchange = function() {
+  var value = this.value.trim();
+
+  if (value) {
+    try {
+      JSON.parse(value);
+    } catch (e) {
+      return this.setCustomValidity("This is not valid JSON.");
+    }
+  }
+
+  this.setCustomValidity("");
+};
+</script>

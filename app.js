@@ -6,6 +6,7 @@ var mime = require('mime');
 var bucket = require('./simple-bucket');
 
 var PORT = process.env.PORT || 3000;
+var MAX_CONTENT_SIZE = 256 * 1024;
 
 var app = express();
 var templateLoader = new nunjucks.FileSystemLoader(__dirname + '/templates');
@@ -24,6 +25,7 @@ function bucketify(options) {
         if (explicitlyAcceptsHtml(req) && options.template)
           return res.status(content ? 200 : 404).render(options.template, {
             url: req.url,
+            maxContentSize: MAX_CONTENT_SIZE,
             bucketContent: req.bucketContent
           });
         if (!content)
@@ -55,6 +57,7 @@ function explicitlyAcceptsHtml(req) {
 
 env.express(app);
 
+app.use(express.limit(MAX_CONTENT_SIZE));
 app.use(express.static(__dirname + '/static'));
 app.use(express.bodyParser());
 

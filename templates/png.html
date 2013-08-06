@@ -1,11 +1,29 @@
 {% if bucketContent %}
   <img src="data:image/png;base64,{{ bucketContent.toString('base64') }}">
 {% else %}
-  <p>NOTHING HERE NOW</p>
+  <p>404 - NOTHING IS HERE NOW.</p>
 {% endif %}
 
+<p>Use the form below to change what's here now.</p>
+
 <form method="post" enctype="multipart/form-data">
-  <input type="file" name="png">
+  <input type="file" name="png" accept="image/png" data-max-size="{{ maxContentSize }}">
   <input type="submit" value="Submit">
   <input type="reset" value="Reset">
 </form>
+
+<script>
+document.querySelector('input[name="png"]').onchange = function() {
+  var maxSize = parseInt(this.getAttribute("data-max-size"));
+
+  if (this.files.length) {
+    if (this.files[0].type != "image/png")
+      return this.setCustomValidity("File must be a PNG image.");
+    if (this.files[0].size > maxSize)
+      return this.setCustomValidity("File cannot be larger than " +
+                                    maxSize + " bytes.");
+  }
+
+  this.setCustomValidity("");
+};
+</script>
