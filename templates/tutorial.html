@@ -33,33 +33,35 @@
 
 <p><small>Note: This tutorial currently only covers unsigned badges; for information on creating signed badges, see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions">specification</a>.</small></p>
 
-<ol>
-  <li>
-    <p class="step">Create issuer metadata JSON</p>
-    <p>Issuer metadata contains information about you (or your organization). You only have to create this file once; all the badges you create will reference this file, so you don’t need to duplicate the information for every badge you issue.</p>
-    <p>Just visit <a href="{{baseUrl}}issuer.json">{{baseUrl}}issuer.json</a> and paste in the following content:</p>
+<h2>Creating the issuer metadata</h2>
+
+<p>Issuer metadata contains information about you (or your organization). You only have to create this file once; all the badges you create will reference this file, so you don’t need to duplicate the information for every badge you issue.</p>
+
+<p>Just visit <a href="{{baseUrl}}issuer.json">{{baseUrl}}issuer.json</a> and paste in the following content:</p>
+
 <pre class="prettyprint lang-js">{
   "name": "YOUR NAME GOES HERE",
   "url": "{{ origin }}"
 }</pre>
-    <p>Feel free to change the value of <code>name</code> to anything you want. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-issuer-organization">IssuerOrganization</a> documentation for more information.</p>
-  </li>
 
-  <li>
-    <p class="step">Find a PNG image for your badge</p>
-    <p>Every badge needs a square PNG image less than 256K in size. Visit <a href="{{baseUrl}}badge.png">{{baseUrl}}badge.png</a> and upload one; if you don’t have one, consider using <a href="/img/spacecat.png">spacecat</a>.</p>
-  </li>
+<p>Feel free to change the value of <code>name</code> to anything you want. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-issuer-organization">IssuerOrganization</a> documentation for more information.</p>
 
-  <li>
-    <p class="step">Define a criteria for your badge</p>
-    <p>This is just a page that explains the criteria for anyone who is awarded your badge.</p>
-    <p>Visit <a href="{{baseUrl}}criteria.txt">{{baseUrl}}criteria.txt</a> and type whatever criteria you want. Badges hosted on this site only allows text content to be on the criteria page for security purposes; when you host your own badges on your own domain, however, you’ll be able to set it to whatever HTML content you like.</p>
-  </li>
+<h2>Creating the badge image</h2>
 
-  <li>
-    <p class="step">Create badge class metadata JSON</p>
-    <p>A badge class is a <em>type</em> of badge rather than a specific instance of one. For instance, a badge class might be <em>HTML Noob</em>, while instances of the class might be the specific <em>HTML Noob</em> badges awarded to Lars and Jess.</p>
-    <p>Visit <a href="{{baseUrl}}class.json">{{baseUrl}}class.json</a> and paste in the following content:</p>
+<p>Every badge needs a square PNG image less than 256K in size. Visit <a href="{{baseUrl}}badge.png">{{baseUrl}}badge.png</a> and upload one; if you don’t have one, consider using <a href="/img/spacecat.png">spacecat</a>.</p>
+
+<h2>Defining the badge criteria</h2>
+
+<p>This is just a page that explains the criteria for anyone who is awarded your badge.</p>
+
+<p>Visit <a href="{{baseUrl}}criteria.txt">{{baseUrl}}criteria.txt</a> and type whatever criteria you want. Badges hosted on this site only allows text content to be on the criteria page for security purposes; when you host your own badges on your own domain, however, you’ll be able to set it to whatever HTML content you like.</p>
+
+<h2>Creating the badge class metadata</h2>
+
+<p>A badge class is a <em>type</em> of badge rather than a specific instance of one. For instance, a badge class might be <em>HTML Noob</em>, while instances of the class might be the specific <em>HTML Noob</em> badges awarded to Lars and Jess.</p>
+
+<p>Visit <a href="{{baseUrl}}class.json">{{baseUrl}}class.json</a> and paste in the following content:</p>
+
 <pre class="prettyprint lang-js">{
   "name": "BADGE NAME GOES HERE",
   "description": "ONE SENTENCE BADGE DESCRIPTION GOES HERE",
@@ -67,14 +69,17 @@
   "criteria": "{{baseUrl}}criteria.txt",
   "issuer": "{{baseUrl}}issuer.json"
 }</pre>
-    <p>Feel free to change the values of <code>name</code> and <code>description</code> to whatever you want. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-badge-class">BadgeClass</a> documentation for more information.</p>
-    <p>Notice how the URLs you created in the previous steps are all linked-to by the badge class metadata. Open Badges tools like backpacks will follow these links to discover everything about your badge class.</p>
-  </li>
 
-  <li>
-    <p class="step">Create badge instance metadata JSON</p>
-    <p>To issue your badge to a specific person, you need to create instance metadata.</p>
-    <p>Visit <a href="{{baseUrl}}1.json">{{baseUrl}}1.json</a> and paste in the following:</p>
+<p>Feel free to change the values of <code>name</code> and <code>description</code> to whatever you want. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-badge-class">BadgeClass</a> documentation for more information.</p>
+
+<p>Notice how the URLs you created in the previous steps are all linked-to by the badge class metadata. Open Badges tools like backpacks will follow these links to discover everything about your badge class.</p>
+
+<h2>Creating the badge instance metadata</h2>
+
+<p>To issue your badge to a specific person, you need to create instance metadata.</p>
+
+<p>Visit <a href="{{baseUrl}}1.json">{{baseUrl}}1.json</a> and paste in the following:</p>
+
 <pre class="prettyprint lang-js">{
   "uid": "{{name}}#1",
   "recipient": {
@@ -89,15 +94,21 @@
     "url": "{{baseUrl}}1.json"
   }
 }</pre>
-    <p>You’ll want to change the value of <code>recipient.identity</code> to a real email address. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#badgeassertion">BadgeAssertion</a> documentation for more information.</p>
-    <p>As you may have intuited, the JSON file you’ve just created is called a <em>badge assertion</em>. Issuing your badge to another user is as simple as creating another JSON file, for example at <a href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
-    <p><small>Note: Hiding the email address of the recipient is possible, but currently outside the scope of this tutorial. See the documentation for <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-identity-object">IdentityObject</a> for more information on how to do this.</small></p>
-  </li>
 
-  <li>
-    <p class="step">Bake the assertion URL into a PNG</p>
-    <p>You’re almost done! Just visit <a href="http://bakery.mofostaging.net/">bakery.openbadges.org</a> and paste in your assertion URL. It will give you back a PNG that looks just like your badge’s PNG, but contains your assertion URL hidden inside it, which Open Badges tools can discover. Give this PNG to your badge’s recipient and they can upload it to their badge backpack for good times.</p>
-    <p><small>Note: You can also use the <a href="https://github.com/mozilla/openbadges/wiki/Issuer-API">Issuer API</a> or the <a href="https://github.com/mozilla/openbadges/wiki/Backpack-Connect:-Issuer-Documentation">Backpack Connect API</a> to push the badge to the recipient’s backpack, but these are currently outside the scope of this tutorial.</p>
-  </li>
-</ol>
+<p>You’ll want to change the value of <code>recipient.identity</code> to a real email address. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#badgeassertion">BadgeAssertion</a> documentation for more information.</p>
+
+<p>As you may have intuited, the JSON file you’ve just created is called a <em>badge assertion</em>. Issuing your badge to another user is as simple as creating another JSON file, for example at <a href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
+
+<p><small>Note: Hiding the email address of the recipient is possible, but currently outside the scope of this tutorial. See the documentation for <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-identity-object">IdentityObject</a> for more information on how to do this.</small></p>
+
+<h2>Baking the assertion URL into an image</h2>
+
+<p>At this point, you have essentially created your badge—you just need a way of giving it to the recipient. One way to do this is by “baking” the badge image by using a tool to hide the assertion URL inside a copy of the badge image. You can then give this baked badge to the recipient, who can upload the image to their backpack, or use it with other Open Badges tools.</p>
+
+<p>To do this, just visit <a href="http://bakery.mofostaging.net/">bakery.openbadges.org</a> and paste in your assertion URL. It will give you back a PNG that looks just like your badge’s PNG, but contains your assertion URL hidden inside it. Just give this PNG to your recipient and make sure they know what to do with it.</p>
+
+<p>Congratulations, you’ve just issued your first hand-made badge!</p>
+
+<p><small>Note: You can also use the <a href="https://github.com/mozilla/openbadges/wiki/Issuer-API">Issuer API</a> or the <a href="https://github.com/mozilla/openbadges/wiki/Backpack-Connect:-Issuer-Documentation">Backpack Connect API</a> to push the badge to the recipient’s backpack, but these are currently outside the scope of this tutorial.</p>
+
 {% endblock %}
