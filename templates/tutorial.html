@@ -5,7 +5,7 @@
 {% block head %}
 <style>
 .step {
-  font-weight: bold;
+  font-size: larger;
 }
 </style>
 {% endblock %}
@@ -19,24 +19,24 @@
 <p>This tutorial assumes that you have your <a href="http://toolness.github.io/hackasaurus-parable/navigator-badge/">navigator badge</a> and a rudimentary knowledge of <a href="http://en.wikipedia.org/wiki/JSON#Data_types.2C_syntax_and_example">JSON</a> syntax.</p>
 
 <p>In this tutorial, you will create your very own
-  "hand-made" <a href="http://openbadges.org/">Open Badges</a> Badge by
+  “hand-made” <a href="http://openbadges.org/">Open Badges</a> Badge by
   constructing and linking together the mandatory parts of a badge, 
   whose structure is diagrammed below.</p>
 
 <p><center><img src="/img/badge-anatomy.png"></center></p>
 
-<p>Don't worry about what each of these parts mean yet; that will be explained to you along the way. but you may want to occasionally refer back to the above diagram to understand how everything fits together.</p>
+<p>Don’t worry about what each of these parts mean yet; that will be explained to you along the way. but you may want to occasionally refer back to the above diagram to understand how everything fits together.</p>
 
-<p>Finally, this tutorial uses some built-in tools that make it quick and easy for you to play around with badge creation. However, the badge you create will only exist temporarily on the internet, so you shouldn't use it to issue real badges. If you host your own website via a service like <a href="http://www.dreamhost.com/">Dreamhost</a>, however, you can use the skills learned here to make real badges and host them on your domain.</p>
+<p>Finally, this tutorial uses some built-in tools that make it quick and easy for you to play around with badge creation. However, the badge you create will only exist temporarily on the internet, so you shouldn’t use it to issue real badges. If you host your own website via a service like <a href="http://www.dreamhost.com/">Dreamhost</a>, however, you can use the skills learned here to make real badges and host them on your domain.</p>
 
-<p>With that out of the way, let's begin.</p>
+<p>With that out of the way, let’s begin.</p>
 
 <p><small>Note: This tutorial currently only covers unsigned badges; for information on creating signed badges, see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions">specification</a>.</small></p>
 
 <ol>
   <li>
     <p class="step">Create issuer metadata JSON</p>
-    <p>Issuer metadata contains information about you (or your organization). You only have to create this file once; all the badges you create will reference this file, so you don't need to duplicate the information for every badge you issue.</p>
+    <p>Issuer metadata contains information about you (or your organization). You only have to create this file once; all the badges you create will reference this file, so you don’t need to duplicate the information for every badge you issue.</p>
     <p>Just visit <a href="{{baseUrl}}issuer.json">{{baseUrl}}issuer.json</a> and paste in the following content:</p>
 <pre class="prettyprint lang-js">{
   "name": "YOUR NAME GOES HERE",
@@ -47,18 +47,18 @@
 
   <li>
     <p class="step">Find a PNG image for your badge</p>
-    <p>Every badge needs a square PNG image less than 256K in size. Visit <a href="{{baseUrl}}badge.png">{{baseUrl}}badge.png</a> and upload one; if you don't have one, consider using <a href="/img/spacecat.png">spacecat</a>.</p>
+    <p>Every badge needs a square PNG image less than 256K in size. Visit <a href="{{baseUrl}}badge.png">{{baseUrl}}badge.png</a> and upload one; if you don’t have one, consider using <a href="/img/spacecat.png">spacecat</a>.</p>
   </li>
 
   <li>
     <p class="step">Define a criteria for your badge</p>
     <p>This is just a page that explains the criteria for anyone who is awarded your badge.</p>
-    <p>Visit <a href="{{baseUrl}}criteria.txt">{{baseUrl}}criteria.txt</a> and type whatever criteria you want. Badges hosted on this site only allows text content to be on the criteria page for security purposes; when you host your own badges on your own domain, however, you'll be able to set it to whatever HTML content you like.</p>
+    <p>Visit <a href="{{baseUrl}}criteria.txt">{{baseUrl}}criteria.txt</a> and type whatever criteria you want. Badges hosted on this site only allows text content to be on the criteria page for security purposes; when you host your own badges on your own domain, however, you’ll be able to set it to whatever HTML content you like.</p>
   </li>
 
   <li>
     <p class="step">Create badge class metadata JSON</p>
-    <p>A badge class is a <em>type</em> of badge rather than a specific instance of one. For instance, a badge class might be "HTML Noob", while instances of the class might be the specific HTML Noob badges awarded to Lars and Jessica.</p>
+    <p>A badge class is a <em>type</em> of badge rather than a specific instance of one. For instance, a badge class might be <em>HTML Noob</em>, while instances of the class might be the specific <em>HTML Noob</em> badges awarded to Lars and Jess.</p>
     <p>Visit <a href="{{baseUrl}}class.json">{{baseUrl}}class.json</a> and paste in the following content:</p>
 <pre class="prettyprint lang-js">{
   "name": "BADGE NAME GOES HERE",
@@ -89,15 +89,15 @@
     "url": "{{baseUrl}}1.json"
   }
 }</pre>
-    <p>You'll want to change the value of <code>recipient.identity</code> to a real email address. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#badgeassertion">BadgeAssertion</a> documentation for more information.</p>
-    <p>As you may have intuited, the JSON file you've just created is called a <em>badge assertion</em>. Issuing your badge to another user is as simple as creating another JSON file, for example at <a href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
+    <p>You’ll want to change the value of <code>recipient.identity</code> to a real email address. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#badgeassertion">BadgeAssertion</a> documentation for more information.</p>
+    <p>As you may have intuited, the JSON file you’ve just created is called a <em>badge assertion</em>. Issuing your badge to another user is as simple as creating another JSON file, for example at <a href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
     <p><small>Note: Hiding the email address of the recipient is possible, but currently outside the scope of this tutorial. See the documentation for <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-identity-object">IdentityObject</a> for more information on how to do this.</small></p>
   </li>
 
   <li>
     <p class="step">Bake the assertion URL into a PNG</p>
-    <p>You're almost done! Just visit <a href="http://bakery.mofostaging.net/">bakery.openbadges.org</a> and paste in your assertion URL. It will give you back a PNG that looks just like your badge's PNG, but contains your assertion URL hidden inside it, which Open Badges tools can discover. Give this PNG to your badge's recipient and they can upload it to their badge backpack for good times.</p>
-    <p><small>Note: You can also use the <a href="https://github.com/mozilla/openbadges/wiki/Issuer-API">Issuer API</a> or the <a href="https://github.com/mozilla/openbadges/wiki/Backpack-Connect:-Issuer-Documentation">Backpack Connect API</a> to push the badge to the recipient's backpack, but these are currently outside the scope of this tutorial.</p>
+    <p>You’re almost done! Just visit <a href="http://bakery.mofostaging.net/">bakery.openbadges.org</a> and paste in your assertion URL. It will give you back a PNG that looks just like your badge’s PNG, but contains your assertion URL hidden inside it, which Open Badges tools can discover. Give this PNG to your badge’s recipient and they can upload it to their badge backpack for good times.</p>
+    <p><small>Note: You can also use the <a href="https://github.com/mozilla/openbadges/wiki/Issuer-API">Issuer API</a> or the <a href="https://github.com/mozilla/openbadges/wiki/Backpack-Connect:-Issuer-Documentation">Backpack Connect API</a> to push the badge to the recipient’s backpack, but these are currently outside the scope of this tutorial.</p>
   </li>
 </ol>
 {% endblock %}

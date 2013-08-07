@@ -1,0 +1,48 @@
+body {
+  font-family: Georgia, serif;
+  margin: 0 8px;
+}
+
+a {
+  text-decoration: none;
+  color: darkOrange;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-weight: normal;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  font-size: larger;
+  background: darkOrange;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background: orange;
+}
+
+pre, code, textarea {
+  font-family: Monaco, "Lucida Console", monospace;
+  font-size: smaller;
+}
+
+@media (min-width: 976px) {
+  body {
+    width: 960px;
+    margin: 0 auto;
+  }
+}

@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<p>This is badge lab.</p>
+<h1>Welcome to Badge Lab.</h1>
+
+<p>Use the button below to start a customized tutorial, where you can create your very own “hand-made” <a href="http://openbadges.org/">Open Badges</a> Badge.</p>
 
 <button id="start">Start Tutorial</button>
 
 <script>
 document.getElementById("start").onclick = function() {
+  // Hopefully this won't collide with anyone else's tutorial "instance".
   var number = Math.floor(Math.random() * 100000);
   window.location = '/tutorial/' + number;
 };
