@@ -12,7 +12,9 @@ var MAX_CONTENT_SIZE = 256 * 1024;
 
 var app = express();
 var templateLoader = new nunjucks.FileSystemLoader(__dirname + '/templates');
-var env = new nunjucks.Environment(templateLoader);
+var env = new nunjucks.Environment(templateLoader, {
+  autoescape: true
+});
 
 function bucketify(options) {
   var extension = new RegExp("\\" + options.ext + "$");
