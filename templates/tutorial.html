@@ -2,6 +2,15 @@
 
 {% block title %}Badge Lab Tutorial #{{name}}{% endblock %}
 
+{% block head %}
+<style>
+a.badge-part {
+  color: inherit;
+  text-decoration: underline;
+}
+</style>
+{% endblock %}
+
 {% block body %}
 <h1>Badge Lab Tutorial #{{name}}</h1>
 
@@ -29,7 +38,7 @@
 
 <p>Issuer metadata contains information about you (or your organization). You only have to create this file once; all the badges you create will reference this file, so you don’t need to duplicate the information for every badge you issue.</p>
 
-<p>Just visit <a href="{{baseUrl}}issuer.json">{{baseUrl}}issuer.json</a> and paste in the following content:</p>
+<p>Just visit <a class="badge-part" href="{{baseUrl}}issuer.json">{{baseUrl}}issuer.json</a> and paste in the following content:</p>
 
 <pre class="prettyprint lang-js">{
   "name": "YOUR NAME GOES HERE",
@@ -40,19 +49,19 @@
 
 <h2>Creating the badge image</h2>
 
-<p>Every badge needs a square PNG image less than 256K in size. Visit <a href="{{baseUrl}}badge.png">{{baseUrl}}badge.png</a> and upload one; if you don’t have one, consider using <a href="/img/spacecat.png">spacecat</a>.</p>
+<p>Every badge needs a square PNG image less than 256K in size. Visit <a class="badge-part" href="{{baseUrl}}badge.png">{{baseUrl}}badge.png</a> and upload one; if you don’t have one, consider using <a href="/img/spacecat.png">spacecat</a>.</p>
 
 <h2>Defining the badge criteria</h2>
 
 <p>This is just a page that explains the criteria for anyone who is awarded your badge.</p>
 
-<p>Visit <a href="{{baseUrl}}criteria.txt">{{baseUrl}}criteria.txt</a> and type whatever criteria you want. Badges hosted on this site only allows text content to be on the criteria page for security purposes; when you host your own badges on your own domain, however, you’ll be able to set it to whatever HTML content you like.</p>
+<p>Visit <a class="badge-part" href="{{baseUrl}}criteria.txt">{{baseUrl}}criteria.txt</a> and type whatever criteria you want. Badges hosted on this site only allows text content to be on the criteria page for security purposes; when you host your own badges on your own domain, however, you’ll be able to set it to whatever HTML content you like.</p>
 
 <h2>Creating the badge class metadata</h2>
 
 <p>A badge class is a <em>type</em> of badge rather than a specific instance of one. For instance, a badge class might be <em>HTML Noob</em>, while instances of the class might be the specific <em>HTML Noob</em> badges awarded to Lars and Jess.</p>
 
-<p>Visit <a href="{{baseUrl}}class.json">{{baseUrl}}class.json</a> and paste in the following content:</p>
+<p>Visit <a class="badge-part" href="{{baseUrl}}class.json">{{baseUrl}}class.json</a> and paste in the following content:</p>
 
 <pre class="prettyprint lang-js">{
   "name": "BADGE NAME GOES HERE",
@@ -70,7 +79,7 @@
 
 <p>To issue your badge to a specific person, you need to create instance metadata.</p>
 
-<p>Visit <a href="{{baseUrl}}1.json">{{baseUrl}}1.json</a> and paste in the following:</p>
+<p>Visit <a class="badge-part" href="{{baseUrl}}1.json">{{baseUrl}}1.json</a> and paste in the following:</p>
 
 <pre class="prettyprint lang-js">{
   "uid": "{{name}}#1",
@@ -91,7 +100,7 @@
 
 <p>As you may have intuited, the JSON file you’ve just created is called a <em>badge assertion</em>. That’s because it signifies a domain owner’s assertion that an individual deserves a badge.</p>
 
-<p>Issuing your badge to another user is as simple as creating another JSON file, for example at <a href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
+<p>Issuing your badge to another user is as simple as creating another JSON file, for example at <a class="badge-part" href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
 
 <p><small>Note: Hiding the email address of the recipient is possible, but currently outside the scope of this tutorial. See the documentation for <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-identity-object">IdentityObject</a> for more information on how to do this.</small></p>
 
