@@ -25,11 +25,22 @@ aside {
   box-sizing: border-box;
 }
 
-aside h3:before {
-  content: 'Optional Reading: ';
+aside.note {
+  font-size: smaller;
+}
+
+aside h3:before, aside.note p:first-child:before {
   text-transform: uppercase;
   font-size: 0.9em;
   color: gray;
+}
+
+aside h3:before {
+  content: 'Optional Reading: ';
+}
+
+aside.note p:first-child:before {
+  content: 'Note: ';
 }
 
 button,

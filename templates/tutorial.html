@@ -32,7 +32,7 @@ a.badge-part {
 
 <p>With that out of the way, let’s begin.</p>
 
-<p><small>Note: This tutorial currently only covers unsigned badges; for information on creating signed badges, see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions">specification</a>.</small></p>
+<aside class="note"><p>This tutorial currently only covers unsigned badges; for information on creating signed badges, see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions">specification</a>.</p></aside>
 
 <h2>Creating the issuer metadata</h2>
 
@@ -112,7 +112,7 @@ a.badge-part {
 
 <p>Issuing your badge to another user is as simple as creating another JSON file, for example at <a class="badge-part" href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
 
-<p><small>Note: Hiding the email address of the recipient is possible, but currently outside the scope of this tutorial. See the documentation for <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-identity-object">IdentityObject</a> for more information on how to do this.</small></p>
+<aside class="note"><p>Hiding the email address of the recipient is possible, but currently outside the scope of this tutorial. See the documentation for <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-identity-object">IdentityObject</a> for more information on how to do this.</p></aside>
 
 <h2>Baking the assertion URL into an image</h2>
 
@@ -122,6 +122,8 @@ a.badge-part {
 
 <p>Congratulations, you’ve just issued your first hand-made badge!</p>
 
-<p><small>Note: You can also use the <a href="https://github.com/mozilla/openbadges/wiki/Issuer-API">Issuer API</a> or the <a href="https://github.com/mozilla/openbadges/wiki/Backpack-Connect:-Issuer-Documentation">Backpack Connect API</a> to push the badge to the recipient’s backpack, but these are currently outside the scope of this tutorial.</p>
+<aside class="note"><p>Note: You can also use the <a href="https://github.com/mozilla/openbadges/wiki/Issuer-API">Issuer API</a> or the <a href="https://github.com/mozilla/openbadges/wiki/Backpack-Connect:-Issuer-Documentation">Backpack Connect API</a> to push the badge to the recipient’s backpack, but these are currently outside the scope of this tutorial.</p></aside>
+
+<br>
 
 {% endblock %}
