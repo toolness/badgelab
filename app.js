@@ -5,7 +5,7 @@ var mime = require('mime');
 
 var bucket;
 
-var PORT = process.env.PORT || 3000;
+var PORT = parseInt(process.env.PORT || '3000');
 var MONGO_URL = process.env.MONGO_URL || process.env.MONGOHQ_URL;
 var ORIGIN = process.env.ORIGIN || 'http://localhost:' + PORT;
 var MAX_CONTENT_SIZE = 256 * 1024;
