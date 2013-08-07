@@ -97,7 +97,9 @@
 
 <p>You’ll want to change the value of <code>recipient.identity</code> to a real email address. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#badgeassertion">BadgeAssertion</a> documentation for more information.</p>
 
-<p>As you may have intuited, the JSON file you’ve just created is called a <em>badge assertion</em>. Issuing your badge to another user is as simple as creating another JSON file, for example at <a href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
+<p>As you may have intuited, the JSON file you’ve just created is called a <em>badge assertion</em>. That’s because it signifies a domain owner’s assertion that an individual deserves a badge.</p>
+
+<p>Issuing your badge to another user is as simple as creating another JSON file, for example at <a href="{{baseUrl}}2.json">{{baseUrl}}2.json</a>, and dropping in slightly different metadata (specifically, changing <code>uid</code>, <code>recipient.identity</code>, and <code>verify.url</code>). There is no need to duplicate badge class information, since every instance points to the same badge class metadata URL.</p>
 
 <p><small>Note: Hiding the email address of the recipient is possible, but currently outside the scope of this tutorial. See the documentation for <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-identity-object">IdentityObject</a> for more information on how to do this.</small></p>
 
@@ -105,7 +107,7 @@
 
 <p>At this point, you have essentially created your badge—you just need a way of giving it to the recipient. One way to do this is by “baking” the badge image by using a tool to hide the assertion URL inside a copy of the badge image. You can then give this baked badge to the recipient, who can upload the image to their backpack, or use it with other Open Badges tools.</p>
 
-<p>To do this, just visit <a href="http://bakery.mofostaging.net/">bakery.openbadges.org</a> and paste in your assertion URL. It will give you back a PNG that looks just like your badge’s PNG, but contains your assertion URL hidden inside it. Just give this PNG to your recipient and make sure they know what to do with it.</p>
+<p>To do this, just visit <a href="http://bakery.mofostaging.net/">bakery.openbadges.org</a> and paste in your assertion URL. It will give you back a PNG that looks just like your badge’s PNG, but contains your assertion URL hidden inside it. Just give this image to your recipient and make sure they know what to do with it.</p>
 
 <p>Congratulations, you’ve just issued your first hand-made badge!</p>
 
