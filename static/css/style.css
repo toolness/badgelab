@@ -40,9 +40,9 @@ pre, code, textarea {
   font-size: smaller;
 }
 
-@media (min-width: 976px) {
+@media (min-width: 816px) {
   body {
-    width: 960px;
+    width: 800px;
     margin: 0 auto;
   }
 }
