@@ -28,6 +28,15 @@ Then visit http://localhost:3000.
   solution if you're hosting the website on Heroku and use the
   [MongoHQ addon][].
 
+## Prior Work
+
+This website was influenced by the following prior work:
+
+* Billy Meinke's [Want to Make Your Own Badges by Hand?][meinke] blog post.
+
+* Mike Larsson's [badgebadger][] (also see its
+  [Github repository][badgebadger-github]). 
+
 ## License
 
 [MIT][].
@@ -36,3 +45,6 @@ Then visit http://localhost:3000.
   [TTL]: http://docs.mongodb.org/manual/tutorial/expire-data/
   [MongoHQ addon]: https://addons.heroku.com/mongohq
   [MIT]: http://opensource.org/licenses/MIT
+  [meinke]: http://billymeinke.wordpress.com/2012/05/24/open-badges-want-to-make-your-own-badges-by-hand-heres-how/
+  [badgebadger]: http://digs.herokuapp.com/badgebadger/
+  [badgebadger-github]: https://github.com/stenington/badgebadger
