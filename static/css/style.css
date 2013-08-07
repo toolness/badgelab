@@ -12,8 +12,24 @@ a:hover {
   text-decoration: underline;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-weight: normal;
+}
+
+aside {
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-left: 4px solid #b0b0b0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+aside h3:before {
+  content: 'Optional Reading: ';
+  text-transform: uppercase;
+  font-size: 0.9em;
+  color: gray;
 }
 
 button,

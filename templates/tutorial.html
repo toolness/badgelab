@@ -47,6 +47,16 @@ a.badge-part {
 
 <p>Feel free to change the value of <code>name</code> to anything you want. There are more optional fields you can add, too; see the <a href="https://github.com/mozilla/openbadges/wiki/Assertions#wiki-issuer-organization">IssuerOrganization</a> documentation for more information.</p>
 
+<aside>
+  <h3>Why does the issuer URL matter?</h3>
+
+  <p>The <code>url</code> property of the issuer metadata is very important, because the basis of trust in the badge ecosystem depends upon the <em>domain</em> each badge is hosted on.</p>
+
+  <p>For example, consider what would happen if a bad person who owns <em>fakemozilla.org</em> set the <code>name</code> of their issuer metadata to <em>The Mozilla Foundation</em>. What’s to stop them from wrongly issuing badges on Mozilla’s behalf?</p>
+
+  <p>The answer lies in the fact that badges are actually issued by the domain that hosts their metadata. Open Badges tools will identify the issuer of any badges created by the aforementioned bad actor as <em>fakemozilla.org</em>, not <em>The Mozilla Foundation</em>, which will tip users off to the fact that the badge isn’t genuine.</p>
+</aside>
+
 <h2>Creating the badge image</h2>
 
 <p>Every badge needs a square PNG image less than 256K in size. Visit <a class="badge-part" href="{{baseUrl}}badge.png">{{baseUrl}}badge.png</a> and upload one; if you don’t have one, consider using <a href="/img/spacecat.png">spacecat</a>.</p>
