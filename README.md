@@ -4,6 +4,8 @@ with creating "hand-made" badges to learn more about Open Badges.
 ## Quick Start
 
 ```bash
+$ git clone https://github.com/toolness/badgelab.git
+$ cd badgelab
 $ npm install
 $ node app.js
 ```
