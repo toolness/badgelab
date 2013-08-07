@@ -2,6 +2,8 @@
 {% block title %}{{ url }}{% endblock %}
 {% block body %}
 
+<pre style="background: #f0f0f0">{{ url }}</pre>
+
 {% if bucketContent %}
   <p>What's here now:</p>
   {% block content %}{% endblock %}
