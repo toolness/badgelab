@@ -1,10 +1,16 @@
-<link rel="stylesheet" href="/prettify.css">
+{% extends "layout.html" %}
+
+{% block title %}Badge Lab Tutorial #{{name}}{% endblock %}
+
+{% block head %}
 <style>
 .step {
   font-weight: bold;
 }
 </style>
+{% endblock %}
 
+{% block body %}
 <h1>Badge Lab Tutorial #{{name}}</h1>
 
 <p>Welcome to Badge Lab Tutorial #{{name}}. There are many like it, but
@@ -94,8 +100,4 @@
     <p><small>Note: You can also use the <a href="https://github.com/mozilla/openbadges/wiki/Issuer-API">Issuer API</a> or the <a href="https://github.com/mozilla/openbadges/wiki/Backpack-Connect:-Issuer-Documentation">Backpack Connect API</a> to push the badge to the recipient's backpack, but these are currently outside the scope of this tutorial.</p>
   </li>
 </ol>
-
-<script src="/prettify.js"></script>
-<script>
-onload = prettyPrint;
-</script>
+{% endblock %}

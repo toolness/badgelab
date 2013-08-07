@@ -1,11 +1,10 @@
-{% if bucketContent %}
-  <img src="data:image/png;base64,{{ bucketContent.toString('base64') }}">
-{% else %}
-  <p>404 - NOTHING IS HERE NOW.</p>
-{% endif %}
+{% extends "layout-bucket.html" %}
 
-<p>Use the form below to change what's here now.</p>
+{% block content %}
+<img src="data:image/png;base64,{{ bucketContent.toString('base64') }}">
+{% endblock %}
 
+{% block form %}
 <form method="post" enctype="multipart/form-data">
   <input type="file" name="png" accept="image/png" data-max-size="{{ maxContentSize }}">
   <input type="submit" value="Submit">
@@ -27,3 +26,4 @@ document.querySelector('input[name="png"]').onchange = function() {
   this.setCustomValidity("");
 };
 </script>
+{% endblock %}

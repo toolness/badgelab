@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<title>Badge Lab</title>
+{% extends "layout.html" %}
 
+{% block body %}
 <p>This is badge lab.</p>
 
 <button id="start">Start Tutorial</button>
@@ -12,3 +11,4 @@ document.getElementById("start").onclick = function() {
   window.location = '/tutorial/' + number;
 };
 </script>
+{% endblock %}

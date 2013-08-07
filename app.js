@@ -118,6 +118,10 @@ app.use(bucketify({
   }
 }));
 
+app.get('/', function(req, res, next) {
+  return res.render('home.html');
+});
+
 app.get('/tutorial/:name', function(req, res, next) {
   res.render('tutorial.html', {
     origin: ORIGIN,

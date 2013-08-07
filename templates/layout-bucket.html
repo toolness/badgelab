@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}{{ url }}{% endblock %}
+{% block body %}
+
+{% if bucketContent %}
+  <p>What's here now:</p>
+  {% block content %}{% endblock %}
+{% else %}
+  <p>404 - NOTHING IS HERE NOW.</p>
+{% endif %}
+
+<p>Use the form below to change what's here now.</p>
+
+{% block form %}{% endblock %}
+
+{% endblock %}

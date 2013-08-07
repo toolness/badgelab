@@ -1,24 +1,18 @@
-<link rel="stylesheet" href="/prettify.css">
+{% extends "layout-bucket.html" %}
 
-{% if bucketContent %}
-  <p>What's here now:</p>
-  <pre class="prettyprint lang-js">{{ bucketContent|e }}</pre>
-{% else %}
-  <p>404 - NOTHING IS HERE NOW.</p>
-{% endif %}
+{% block content %}
+<pre class="prettyprint lang-js">{{ bucketContent|e }}</pre>
+{% endblock %}
 
-<p>Use the form below to change what's here now.</p>
-
+{% block form %}
 <form method="POST">
-  <textarea name="json" cols="80" rows="25" maxlength="{{ maxContentSize }}">{{ bucketContent }}</textarea>
+  <textarea name="json" cols="80" rows="25"
+   maxlength="{{ maxContentSize }}">{{ bucketContent }}</textarea>
   <p>
   <input type="submit" value="Submit">
 </form>
 
-<script src="/prettify.js"></script>
 <script>
-onload = prettyPrint;
-
 document.querySelector("form textarea").onchange = function() {
   var value = this.value.trim();
 
@@ -33,3 +27,4 @@ document.querySelector("form textarea").onchange = function() {
   this.setCustomValidity("");
 };
 </script>
+{% endblock %}
