@@ -3,9 +3,10 @@ var express = require('express');
 var nunjucks = require('nunjucks');
 var mime = require('mime');
 
-var bucket = require('./simple-bucket');
+var bucket;
 
 var PORT = process.env.PORT || 3000;
+var MONGO_URL = process.env.MONGO_URL;
 var ORIGIN = process.env.ORIGIN || 'http://localhost:' + PORT;
 var MAX_CONTENT_SIZE = 256 * 1024;
 
@@ -54,6 +55,12 @@ function explicitlyAcceptsHtml(req) {
       return true;
   }
   return false;
+}
+
+function startApp() {
+  app.listen(PORT, function() {
+    console.log("listening on port", PORT);
+  });
 }
 
 env.express(app);
@@ -120,6 +127,15 @@ app.get('/tutorial/:name', function(req, res, next) {
   });
 });
 
-app.listen(PORT, function() {
-  console.log("listening on port", PORT);
-});
+if (MONGO_URL) {
+  console.log("using mongodb for storage.");
+  require('./mongo-bucket').connect(MONGO_URL, function(err, mongoBucket) {
+    if (err) throw err;
+    bucket = mongoBucket;
+    startApp();
+  });
+} else {
+  bucket = require('./simple-bucket');
+  console.log("using in-process memory for storage.");
+  startApp();
+}
